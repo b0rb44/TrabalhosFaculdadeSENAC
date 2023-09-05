@@ -1,0 +1,23 @@
+body{
+    display: grid;
+    grid-template-columns: auto;
+    color: white;
+     background-color: #32403d; 
+     font-family: system-ui, -apple-system, BlinkMacSystemFont;
+     height: 1px;
+      
+}
+
+h1{
+    text-align: center;
+}
+
+.frequencia{
+  width: 30%;
+  margin-left: 20%;  
+  height: 1px;
+}
+
+input {
+    width: 222px;
+}

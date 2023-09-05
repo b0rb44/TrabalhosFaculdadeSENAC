@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fla{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="classeEscolhida" placeholder="Digite o nome da classe CSS"> 
+        <button onclick="aplicarCSS()">Aplicar CSS</button>
+    </div>
+    <div id="root">
+        <p>Olá</p>
+        <button onclick="criarBotao()">Criar botão</button>
+    </div>
+    <div id="sala">
+
+    </div>
+    <script>
+        const p2 = document.createElement('p')
+        p2.innerHTML = 'Hello World!'
+        document.getElementById('root').appendChild(p2)
+        
+        function criarBotao(){
+            const bt = document.createElement("button")
+            bt.innerHTML = 'Gravar'
+
+           //bt.style.backgroundColor = 'red'
+
+           bt.setAttribute('class', 'fla')
+           bt.setAttribute('onclick', 'ola()')
+           document.getElementById('sala').appendChild(bt)
+        }
+
+        function ola(){
+            alert('Olá pessoal')
+        }
+
+        function aplicarCSS(){
+            const p1 = document.createElement('p')
+            p1.innerHTML = "CSS dinâmico"
+            p1.setAttribute('class', document.getElementById('classeEscolhida').value)
+            document.getElementById('sala2').appendChild(p1)
+        }
+    </script>
+</body>
+</html>

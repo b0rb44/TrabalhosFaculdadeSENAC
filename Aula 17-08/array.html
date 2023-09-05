@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArrayEX</title>
+</head>
+
+<body>
+    <h1 style="text-align: center; color: midnightblue;">Tabela Agenda</h1>
+    <div>
+        <table id="tabelaDados">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Celular</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    </div>
+    <script>
+        const frutas = ['maçã', 'banana', 10]
+        frutas.push('morango')
+        frutas.unshift('limao')
+        console.log(frutas)
+        console.log(frutas.length)
+        console.log(frutas.indexOf('banana'))
+
+        const agenda = [{ nome: 'Maria', email: 'maria@gmail.com' },
+        { nome: 'José', email: 'jose@gmail.com' },
+        { nome: 'João', email: 'jao@gmail.com' }]
+
+
+           let msg = ''
+            for (let i = 0; i < agenda.length; i++) {
+                msg += `<tr><td>${agenda[i].nome}</td><td>${agenda[i].email}</td></tr>`
+            }
+
+            document.getElementById('tabelaDados').innerHTML = msg
+
+
+    </script>
+</body>
+
+</html>

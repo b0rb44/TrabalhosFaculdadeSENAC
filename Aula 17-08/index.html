@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <h1>Tabela de Dados</h1>
+    <div>
+        <label for="nome">Insira o Nome</label>
+        <input type="text" placeholder="Informe nome" id="nome"> 
+
+        <label for="email">Insira o Email</label>
+        <input type="text" placeholder="Informe email" id="email">
+
+        <label for="celular">Insira o Celular</label>
+        <input type="text" placeholder="Informe celular" id="celular">
+
+        <button onclick="salvar()"> Gravar</button>
+    </div>
+    <script>
+        function salvar(){
+        let obj = {nome: document.getElementById('nome').value,
+         email: document.getElementById('email').value,
+         celular: document.getElementById ('celular').value}
+        console.log(obj)
+        }
+    </script>
+</body>
+</html>

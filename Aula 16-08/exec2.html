@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de Cinema</title>
+</head>
+<body>
+    <div>
+        <input type="number" placeholder="Informe o número de cadeiras" id="nCadeiras">
+        <button onclick="criarSala()">Criar Sala</button>
+        <hr>
+        <div id="sala">
+
+        </div>
+    </div>
+    <script>
+        function criarSala(){
+            var nCadeiras = document.getElementById('nCadeiras').value
+
+            for (let i = 1; i <= nCadeiras; i++){
+                var bt = document.createElement('button')
+                bt.innerHTML = `A${i}`
+
+                document.getElementById('sala').appendChild(bt)
+            }
+        }
+    </script>
+    
+</body>
+</html>

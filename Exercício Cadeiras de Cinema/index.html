@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sala de Cinema</title>
+    <style>
+        .sala {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .linha {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .cadeira {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        .disponivel {
+            background-color: green;
+        }
+        .reservada {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sala de Cinema</h1>
+    
+    <div>
+        <label for="numCadeiras">Número de Cadeiras: </label>
+        <input type="number" id="numCadeiras">
+        <button onclick="criarSala()">Criar Sala</button>
+    </div>
+    
+    <div id="sala" class="sala">
+        <!-- Cadeiras serão adicionadas aqui -->
+    </div>
+    
+    <div>
+        <h2>Legenda:</h2>
+        <div class="cadeira disponivel"></div> <span>Disponível</span>
+        <div class="cadeira reservada"></div> <span>Reservada</span>
+    </div>
+    
+    <script>
+        var numCadeiras = 0;
+        var cadeirasReservadas = 0;
+        
+        function criarSala() {
+            var sala = document.getElementById("sala");
+            sala.innerHTML = "";
+            
+            numCadeiras = parseInt(document.getElementById("numCadeiras").value);
+            cadeirasReservadas = 0;
+
+            var numLinhas = Math.ceil(numCadeiras / 10);
+
+            for (var linha = 0; linha < numLinhas; linha++) {
+                var linhaDiv = document.createElement("div");
+                linhaDiv.className = "linha";
+
+                for (var i = 1; i <= 10; i++) {
+                    var cadeiraNumero = linha * 10 + i;
+                    if (cadeiraNumero > numCadeiras) {
+                        break;
+                    }
+
+                    var cadeira = document.createElement("div");
+                    cadeira.className = "cadeira disponivel";
+                    cadeira.textContent = cadeiraNumero;
+                    cadeira.onclick = function() {
+                        reservarCadeira(this);
+                    };
+                    linhaDiv.appendChild(cadeira);
+                }
+
+                sala.appendChild(linhaDiv);
+            }
+        }
+        
+        function reservarCadeira(cadeira) {
+            if (cadeira.classList.contains("disponivel")) {
+                cadeira.classList.remove("disponivel");
+                cadeira.classList.add("reservada");
+                cadeirasReservadas++;
+            } else {
+                cadeira.classList.remove("reservada");
+                cadeira.classList.add("disponivel");
+                cadeirasReservadas--;
+            }
+            
+            atualizarLegenda();
+        }
+        
+        function atualizarLegenda() {
+            var disponiveis = numCadeiras - cadeirasReservadas;
+            var legenda = document.getElementById("legenda");
+            legenda.innerHTML = "Disponíveis: " + disponiveis + " | Reservadas: " + cadeirasReservadas;
+        }
+    </script>
+</body>
+</html>

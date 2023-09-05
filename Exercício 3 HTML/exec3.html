@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 3</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="media">
+        <h1> Verificação de Aluno</h1>
+        <div class="frequencia">
+            <br>
+            <br>
+            <label for="frequenciaAluno"> Informe a frequência do aluno</label>
+            <br>
+            <input type="number" id="frequenciaAluno">
+            <br>
+        </div>
+
+        <label for="nota1"> Informe a primeira nota do aluno</label>
+        <br>
+        <input type="number" id="nota1">
+        <br>
+        <label for="nota2"> Informe a segunda nota do aluno</label>
+        <br>
+        <input type="number" id="nota2">
+        <br>
+        <label for="nota3"> Informe a terceira nota do aluno</label>
+        <br>
+        <input type="number" id="nota3">
+        <br>
+        <button onclick="calcularMedia()" style="margin-top: 5px;">Verificar situação do aluno</button>
+        <hr>
+        <label for="resultadoM" style="margin-top: 5px;">Média</label>
+        <input type="number" id="resultadoM" disabled style="color: white;">
+        <script>
+function calcularMedia() {
+    var nota1 = parseFloat(document.getElementById('nota1').value);
+    var nota2 = parseFloat(document.getElementById('nota2').value);
+    var nota3 = parseFloat(document.getElementById('nota3').value);
+    var frequencia = parseInt(document.getElementById('frequenciaAluno').value);
+
+    if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(frequencia) || nota1 > 10 || nota2 > 10 || nota3 > 10 || frequencia > 100) {
+        alert('Por favor, insira notas e frequência válidas.');
+        return;
+    }
+
+    var mediaNotas = (nota1 + nota2 + nota3) / 3;
+
+    if (mediaNotas >= 7 && frequencia >= 70) {
+        alert('Aluno Aprovado!');
+    } else {
+        alert('Aluno Reprovado.');
+    }
+
+    document.getElementById('resultadoM').value = mediaNotas.toFixed(2);
+}
+
+        </script>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz PMBOK</title>
+  <style>
+    body {
+      font-family: 'Segoe UI';
+      background-color: #350e32;
+      color: white;
+    }
+
+    .quiz-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .question {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .options button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .certa {
+      color: green
+    }
+
+    .errada {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="color: white; margin-top: 50px; text-align: center; font-size: 50px;">Quiz Escopo PMBOK</h1>
+  <div class="quiz-container">
+    <div class="question" id="question"></div>
+    <div class="options" id="options">
+      <button class="option" onclick="checkAnswer(true)"></button>
+      <button class="option" onclick="checkAnswer(false)"></button>
+    </div>
+  </div>
+
+  <div id="acertos">
+    <hr style="margin-top: 50px;">
+    <h2 style="margin: 50px; text-align: center; font-size: 32px;">Acertos</h2>
+    <p style="text-align: center; font-size: 30px;"><span id="contador"></span>/8</p>
+  </div>
+
+  <script>
+
+    const perguntas = [
+      {
+        question: "Quais são as principais ferramentas e técnicas do escopo?",
+        options: [
+          { text: 'Opinião Especializada', isCorrect: true },
+          { text: 'Questionário', isCorrect: false }]
+      },
+
+      {
+        question: "A verificação do escopo envolve a revisão e aceitação formal das entregas do projeto.",
+        options: [
+          { text: 'Verdadeiro', isCorrect: true },
+          { text: 'Falso', isCorrect: false }]
+      },
+
+      {
+        question: "Qual a entrada para planejar o gerenciamento de escopo?",
+        options: [
+          { text: 'Plano de gerenciamento do escopo', isCorrect: false },
+          { text: 'Fatores ambientais da empresa ', isCorrect: true }]
+      },
+
+      {
+        question: "Qual a saída para planejar o gerenciamento de escopo?",
+        options: [
+          { text: 'Análise de Dados', isCorrect: false },
+          { text: 'Plano de Gerenciamento de Requisitos', isCorrect: true }]
+      },
+
+      {
+        question: "O gerenciamento de projetos é realizado através da:",
+        options: [
+          { text: 'Aplicação e integração apropriadas dos processos identificados para o projeto', isCorrect: true },
+          { text: 'Habilidade e conhecimento apropriados dos processos identificados para o projeto', isCorrect: false }]
+      },
+
+      {
+        question: "O gerenciamento de projetos permite que as organizações executem projetos:",
+        options: [
+          { text: 'De modo ágil', isCorrect: false },
+          { text: 'De modo eficaz e eficiente', isCorrect: true }]
+      },
+
+      {
+        question: "Qual dos seguintes processos no escopo de gerenciamento de projetos PMBOK é responsável por revisar e aceitar formalmente as entregas do projeto?",
+        options: [
+          { text: 'Verificação do Escopo', isCorrect: true },
+          { text: 'Planejamento do Escopo', isCorrect: false }]
+      },
+
+      {
+        question: "O controle do escopo do projeto não inclui a avaliação de solicitações de mudança no escopo",
+        options: [
+          { text: 'Verdadeiro', isCorrect: false },
+          { text: 'Falso', isCorrect: true }]
+      }
+
+    ]
+
+
+    let currentQuestionIndex = 0;
+    let nAcertos = 0
+
+    function displayQuestion() {
+      const questionElement = document.getElementById("question")
+      const optionsElement = document.getElementById("options")
+      const questionObj = perguntas[currentQuestionIndex]
+
+      questionElement.textContent = questionObj.question
+      questionElement.classList.remove("certa", "errada")
+
+      optionsElement.innerHTML = ''
+
+      questionObj.options.forEach((option, index) => {
+        const button = document.createElement('button')
+        button.textContent = option.text;
+        button.className = 'option';
+        button.onclick = () => checkAnswer(option.isCorrect)
+        optionsElement.appendChild(button);
+      });
+    }
+
+    function checkAnswer(isCorrect) {
+      const optionsElement = document.getElementById("options")
+      const buttons = optionsElement.querySelectorAll(".option")
+      const questionElement = document.getElementById('question')
+      const correctAnswers = document.getElementById('contador')
+ 
+
+      buttons.forEach(button => {
+        button.disabled = true;
+        if (isCorrect) {
+          button.style.backgroundColor = "green";
+          questionElement.classList.add('certa')
+        } else {
+          button.style.backgroundColor = "red";
+          questionElement.classList.add('errada')
+        }
+      })
+
+      if (isCorrect){
+        nAcertos++
+      }
+
+      correctAnswers.textContent = nAcertos
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex < perguntas.length) {
+        setTimeout(displayQuestion, 1500);
+      } else {
+        alert("Quiz Finalizado!");
+      }
+    }
+
+    displayQuestion();
+  </script>
+</body>
+
+</html>

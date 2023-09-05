@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="transforma()">Transformar</button>
+    <button onclick="getLogradouro()">Verificar CEP</button>
+    <label >CEP</label>
+    <input type="text" id="cep" onblur="getLogradouro()">
+    <label >Rua</label>
+    <input type="text" id="logradouro">
+    <label >Bairro</label>
+    <input type="text" id="bairro">
+
+    <script>
+        /*
+        function getLogradouro(){
+            let cep = document.getElementById('cep').value
+            fetch(`https://viacep.com.br/ws/${cep}/json`).then(data => data.json())
+            .then(response => {
+                document.getElementById('logradouro').value = 
+                response.logradouro
+                document.getElementById('bairro').value = 
+                response.bairro
+
+                console.log(response)
+            })
+        }*/
+
+        async function getLogradouro(){
+            let cep = document.getElementById('cep').value
+            let dados = await fetch (`https://viacep.com.br/ws/${cep}/json`)
+            dados = await dados.json()
+            console.log(dados)
+
+            document.getElementById('logradouro').value = dados.logradouro
+            document.getElementById('bairro').value = dados.bairro
+        }
+
+        function transforma(){
+            let objContato = {nome: 'Maria', email: 'maria@gmail.com'}
+            let jsonContato = JSON.stringify(objContato)
+
+            console.log(objContato)
+            console.log(jsonContato)
+
+            let voltaContato = JSON.parse(jsonContato)
+
+            console.log(voltaContato)
+        }
+        
+    </script>
+</body>
+</html>

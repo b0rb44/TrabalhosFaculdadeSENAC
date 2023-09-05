@@ -1,0 +1,22 @@
+body{
+    background-color: rgb(70, 196, 196);
+}
+
+h1{
+    text-align: center;
+    color: black;
+}
+
+.grava{
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+#deleta{
+    background-color: black;
+    color: white;
+    border-bottom: 2px dashed;
+}

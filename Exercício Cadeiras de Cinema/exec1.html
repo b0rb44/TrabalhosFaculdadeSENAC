@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de Cinema</title>
+    <style>
+        .cadeira{
+            width: 55px;
+            height: 55px;
+            margin: 5px;
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+            background-color: green;
+            cursor: pointer;
+        }
+
+        .reservada{
+            background-color: red;
+            width: 55px;
+            height: 55px;
+            margin: 5px;
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="background-color:palevioletred;">
+    <h1 style="text-align: center; color: white;">Sala de Cinema</h1>
+    <div style=" display: flexbox;">
+        <input type="number" placeholder="Informe o número de cadeiras" style="width: 200px;" id="numCadeiras">
+        <button onclick="criarSala()">Criar Sala</button>
+        <hr>
+
+        <div id="sala" style="margin: auto;">
+        </div>
+        <p>Total Livres: <span id="livres"></span></p>
+        <p>Total Reservadas: <span id="reservadas"></span></p>
+    </div>
+    <script>
+        function criarSala(){
+            let nCadeiras = document.getElementById('numCadeiras').value
+
+            document.getElementById('sala').innerHTML = '';
+
+            for (let i = 1; i <= nCadeiras; i++){
+                let contador = 0
+                var bt = document.createElement('button')
+                bt.innerHTML = `A${i}`
+                bt.className = 'cadeira'
+
+                bt.addEventListener('click', function() {         
+                    if (this.classList.contains('reservada')){
+                        this.classList.remove('reservada')
+                        this.classList.add('cadeira')
+                    } else {
+                        this.classList.remove('cadeira')
+                        this.classList.add('reservada')
+                    }
+                verificar()
+                })
+
+                document.getElementById('sala').appendChild(bt)
+            
+        }
+    }
+
+        function verificar(){
+            document.getElementById('livres').innerHTML = 
+            document.getElementsByClassName('cadeira').length
+
+            document.getElementById('reservadas').innerHTML = 
+            document.getElementsByClassName('reservada').length
+        }
+
+    </script>
+</body>
+</html>

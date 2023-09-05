@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .par{
+            color: black;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="number" placeholder="Informe um número">
+        <button onclick="verificar()">Verificar</button>
+        <hr>
+        <p></p>
+    </div>
+    <script>
+        function verificar() {
+            var numero = parseInt(document.getElementsByTagName('input')[0].value)
+            var p1 = document.getElementsByTagName('p')[0]
+            if (numero % 2 == 0) {
+                p1.innerHTML = 'Número Par';
+                p1.setAttribute('style', '')
+                p1.setAttribute('class' , 'par')
+            } else{
+                p1.innerHTML = 'Número ímpar'
+                p1.style.color = 'red'
+                p1.style.backgroundColor = 'green'
+            }
+        }
+    </script>
+</body>
+</html>
